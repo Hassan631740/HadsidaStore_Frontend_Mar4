@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@workspace/ui/components/button";
 import { useDir } from "@/components/direction-provider";
 
 export function DirectionToggle() {

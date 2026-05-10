@@ -1,6 +1,6 @@
 "use client";
 
-import { DirectionProvider } from "@/components/ui/direction";
+import { DirectionProvider } from "@workspace/ui/components/direction";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type Direction = "ltr" | "rtl";
