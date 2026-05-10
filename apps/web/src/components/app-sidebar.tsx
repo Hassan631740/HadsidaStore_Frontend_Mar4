@@ -32,9 +32,6 @@ import {
   SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
   SidebarRail,
 } from "@workspace/ui/components/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@workspace/ui/components/collapsible"
@@ -74,17 +71,15 @@ export function AppSidebar() {
       <SidebarHeader className="border-b">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <div className="flex items-center gap-2">
-                <Avatar className="size-8 rounded-lg">
-                  <AvatarFallback className="rounded-lg bg-primary text-primary-foreground text-xs font-bold">
-                    HD
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex flex-col leading-none">
-                  <span className="text-sm font-semibold">Habsida Delivery</span>
-                  <span className="text-xs text-muted-foreground">GM</span>
-                </div>
+            <SidebarMenuButton size="lg">
+              <Avatar className="size-8 rounded-lg shrink-0">
+                <AvatarFallback className="rounded-lg bg-primary text-primary-foreground text-xs font-bold">
+                  HD
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col leading-none">
+                <span className="text-sm font-semibold">Habsida Delivery</span>
+                <span className="text-xs text-muted-foreground">GM</span>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -97,11 +92,13 @@ export function AppSidebar() {
             <SidebarMenu>
               {storeNav.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.title}>
-                    <Link href={item.href}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
+                  <SidebarMenuButton
+                    render={<Link href={item.href} />}
+                    isActive={isActive(item.href)}
+                    tooltip={item.title}
+                  >
+                    <item.icon />
+                    <span>{item.title}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -111,22 +108,22 @@ export function AppSidebar() {
 
         <SidebarGroup>
           <Collapsible defaultOpen className="group/collapsible">
-            <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex w-full items-center">
-                Product
-                <ChevronDown className="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
+            <SidebarGroupLabel render={<CollapsibleTrigger className="flex w-full items-center" />}>
+              Product
+              <ChevronDown className="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
             </SidebarGroupLabel>
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {productNav.map((item) => (
                     <SidebarMenuItem key={item.href}>
-                      <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.title}>
-                        <Link href={item.href}>
-                          <item.icon />
-                          <span>{item.title}</span>
-                        </Link>
+                      <SidebarMenuButton
+                        render={<Link href={item.href} />}
+                        isActive={isActive(item.href)}
+                        tooltip={item.title}
+                      >
+                        <item.icon />
+                        <span>{item.title}</span>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
@@ -138,22 +135,22 @@ export function AppSidebar() {
 
         <SidebarGroup>
           <Collapsible defaultOpen className="group/collapsible">
-            <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex w-full items-center">
-                Orders
-                <ChevronDown className="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
+            <SidebarGroupLabel render={<CollapsibleTrigger className="flex w-full items-center" />}>
+              Orders
+              <ChevronDown className="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
             </SidebarGroupLabel>
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {ordersNav.map((item) => (
                     <SidebarMenuItem key={item.href}>
-                      <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.title}>
-                        <Link href={item.href}>
-                          <item.icon />
-                          <span>{item.title}</span>
-                        </Link>
+                      <SidebarMenuButton
+                        render={<Link href={item.href} />}
+                        isActive={isActive(item.href)}
+                        tooltip={item.title}
+                      >
+                        <item.icon />
+                        <span>{item.title}</span>
                       </SidebarMenuButton>
                       {"badge" in item && item.badge ? (
                         <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
@@ -170,11 +167,13 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={isActive("/statistics")} tooltip="Statistics">
-                  <Link href="/statistics">
-                    <BarChart3 />
-                    <span>Statistics</span>
-                  </Link>
+                <SidebarMenuButton
+                  render={<Link href="/statistics" />}
+                  isActive={isActive("/statistics")}
+                  tooltip="Statistics"
+                >
+                  <BarChart3 />
+                  <span>Statistics</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -185,16 +184,14 @@ export function AppSidebar() {
       <SidebarFooter className="border-t">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild tooltip="Account">
-              <Link href="/account">
-                <Avatar className="size-8 rounded-lg">
-                  <AvatarFallback className="rounded-lg text-xs font-semibold">GM</AvatarFallback>
-                </Avatar>
-                <div className="flex flex-col leading-none">
-                  <span className="text-sm font-medium">General Manager</span>
-                  <span className="text-xs text-muted-foreground">admin@habsida.com</span>
-                </div>
-              </Link>
+            <SidebarMenuButton size="lg" render={<Link href="/account" />} tooltip="Account">
+              <Avatar className="size-8 rounded-lg shrink-0">
+                <AvatarFallback className="rounded-lg text-xs font-semibold">GM</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col leading-none">
+                <span className="text-sm font-medium">General Manager</span>
+                <span className="text-xs text-muted-foreground">admin@habsida.com</span>
+              </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

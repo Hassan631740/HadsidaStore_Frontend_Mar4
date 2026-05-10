@@ -66,7 +66,7 @@ export function OrderHistoryTable() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <Select value={typeFilter} onValueChange={setTypeFilter}>
+        <Select value={typeFilter} onValueChange={(v) => setTypeFilter(v ?? "all")}>
           <SelectTrigger className="w-36">
             <SelectValue placeholder="Order type" />
           </SelectTrigger>
@@ -76,7 +76,7 @@ export function OrderHistoryTable() {
             <SelectItem value="pickup">Pickup</SelectItem>
           </SelectContent>
         </Select>
-        <Select value={statusFilter} onValueChange={setStatusFilter}>
+        <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v ?? "all")}>
           <SelectTrigger className="w-40">
             <SelectValue placeholder="Status" />
           </SelectTrigger>
